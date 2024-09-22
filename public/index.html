@@ -1,43 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> -->
+  <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Currency Converter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+    }
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    body {
+      min-height: 100vh;
+      background: url(bg.png) #030728 center no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    }
+
+    #root {
+      width: 100%;
+    }
+
+    .currency-converter {
+      margin: 0 auto;
+      padding: 40px 30px 50px;
+      border-radius: 8px;
+      max-width: 410px;
+      backdrop-filter: blur(30px);
+      background: rgba(2, 7, 40, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .currency-converter .converter-title {
+      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .currency-converter .converter-form {
+      margin-top: 45px;
+    }
+
+    .converter-form .form-group {
+      display: flex;
+      margin-bottom: 30px;
+      flex-direction: column;
+    }
+
+    .converter-form .form-group .form-label {
+      color: #fff;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 9px;
+      font-size: 1rem;
+    }
+
+    .converter-form .form-group .form-input {
+      outline: none;
+      font-size: 1.1rem;
+      padding: 0 15px;
+      color: #fff;
+      font-weight: 500;
+      min-height: 48px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border: rgba(255, 255, 255, 0.5);
+    }
+
+    .converter-form .form-currency-group {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-currency-group .currency-select {
+      display: flex;
+      padding: 0 5px;
+      min-height: 45px;
+      align-items: center;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-currency-group .currency-select img {
+      width: 25px;
+    }
+
+    .form-currency-group .currency-select .currency-dropdown {
+      outline: none;
+      border: none;
+      background: none;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0 10px 0 5px;
+    }
+
+    .form-currency-group .currency-select .currency-dropdown option {
+      color: #000;
+      font-weight: 500;
+    }
+
+    .form-currency-group .swap-icon {
+      height: 35px;
+      width: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-top: 25px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: rgba(255, 255, 255, 0.5);
+      transition: ease;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+
+    .form-currency-group .swap-icon:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .converter-form .submit-btn {
+      width: 100%;
+      min-height: 52px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .converter-form .submit-btn:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .converter-form .submit-btn .loading {
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .converter-form .exchange-rate-result {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 25px 0;
+      margin-top: 30px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+
+</body>
+
 </html>
